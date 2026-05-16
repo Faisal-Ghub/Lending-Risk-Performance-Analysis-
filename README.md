@@ -49,7 +49,7 @@ Consumer Loan Dataset (70K records, 2007–2014)
             ▼
 ┌─────────────────────┐
 │   SQL ETL Pipeline  │  PostgreSQL
-│  Extract → Clean    │  Null handling, feature engineering
+│  Extract →          │  Null handling, feature engineering
 │  Transform → Load   │  profitability, risk_flag, income_to_loan_ratio
 └────────┬────────────┘
          │
@@ -57,26 +57,27 @@ Consumer Loan Dataset (70K records, 2007–2014)
 ┌─────────────────────┐
 │   Excel EDA         │  20 analysis tasks
 │  Distributions      │  Pivot tables, scatter plots
-│  Correlations       │  Conditional formatting, default rate calc
+│  Correlations       │  Conditional formatting
 └────────┬────────────┘
          │
          ▼
 ┌─────────────────────┐
-│   Power BI          │  Interactive dashboard
-│  KPI tiles          │  Slicers: Year, Grade, Region, Income
-│  Risk heatmaps      │  Trend lines, donut charts, treemap
+│     Power BI        │  Interactive dashboard
+│    KPI tiles        │  Slicers: Year, Grade, Region, Income
+│                     │  Trend lines, donut charts, treemap
 └────────┬────────────┘
          │
          ▼
 ┌──────────────────────────────────────────────┐
-│              n8n Automation Layer             │
+│              n8n Automation Layer            │
 │                                              │
 │  Workflow 1: Scheduled Risk Summary          │
-│  Cron → PostgreSQL → Code → Groq LLM → Gmail│
+│  Cron → PostgreSQL → Code → Groq LLM → Gmail │
 │                                              │
 │  Workflow 2: On-Demand Loan Explanation      │
-│  Webhook → Code → PostgreSQL → Groq LLM     │
-│         → Code → Respond to Webhook         │
+│  Postman → Sends question → PostgreSQL →     │
+│         Groq LLM                             │         
+│         → Code → Respond to Webhook          │
 └──────────────────────────────────────────────┘
 ```
 
@@ -95,7 +96,7 @@ Consumer Loan Dataset (70K records, 2007–2014)
 
 ## Dashboard
 
-![Loan Portfolio Performance and Risk Dashboard](assets/Dashboard Image.png)
+![Loan Portfolio Performance and Risk Dashboard](assets/Dashboard_image.png)
 
 **Dashboard highlights:**
 - 6 KPI tiles: Total Loan Amount ($984M), Avg Interest Rate (13.69), Default Rate (12.81%), Total Profitability (−$144.03M), Total Payment ($840.39M), Avg DTI (16.99)
@@ -119,7 +120,7 @@ The workflow pulls aggregated portfolio metrics from PostgreSQL every week, send
 
 **Sample AI-generated email output:**
 
-![Triggered Email](assets/Triggered_Mail.png)
+![Triggered Email](assets/Triggered_mail.png)
 
 The AI identified:
 - 12.81% bad loan rate as a concentration risk flag
@@ -135,7 +136,7 @@ The AI identified:
 
 A risk manager or compliance officer sends a natural language question via POST request. The system fetches the relevant loan record from PostgreSQL, passes it to Groq LLaMA, and returns a plain-English explanation of why the loan is classified as risky — in under 3 seconds.
 
-![Input and Output](assets/input_output.png)
+![Input and Output](assets/Input_&_Output.png)
 
 **Example query:**
 ```json
