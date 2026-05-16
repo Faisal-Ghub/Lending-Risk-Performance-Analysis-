@@ -95,7 +95,7 @@ Consumer Loan Dataset (70K records, 2007–2014)
 
 ## Dashboard
 
-![Loan Portfolio Performance and Risk Dashboard](assets/dashboard.png)
+![Loan Portfolio Performance and Risk Dashboard](assets/Dashboard Image.png)
 
 **Dashboard highlights:**
 - 6 KPI tiles: Total Loan Amount ($984M), Avg Interest Rate (13.69), Default Rate (12.81%), Total Profitability (−$144.03M), Total Payment ($840.39M), Avg DTI (16.99)
